@@ -1,0 +1,10 @@
+eclipse.preferences.version=1
+encoding//WebRoot/category/aindex.jsp=UTF-8
+encoding//WebRoot/css/public.css=UTF-8
+encoding//WebRoot/css/style.css=UTF-8
+encoding//src/com/ygh/shop/action/PayAction.java=UTF-8
+encoding//src/com/ygh/shop/dao/imp/BaseDaoImp.java=UTF-8
+encoding//src/com/ygh/shop/model/SendData.java=UTF-8
+encoding//src/com/ygh/shop/service/PayService.java=UTF-8
+encoding/<project>=UTF-8
+separateDerivedEncodings=true

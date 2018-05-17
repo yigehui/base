@@ -1,0 +1,13 @@
+1： Hibernate的查询机制
+	H有两种查询机制  第一种是session ， 第二种是hql
+	
+	H中的一级缓存（默认存在） 它也称为session级别的缓存，不是用来提升性能的，是用来处理事务的。 二级缓存是sessionFactory级别的
+	缓存，对所有的session都有效 生命周期与sessionFactory相同 (sessionFactory时单例，而且项目启动会创建)
+	
+	1.1 session.save()  update() delete() get() load() 此方式查询一条记录，默认不用配置就支持二级缓存。 配置read-only对
+	session的二级缓存生效的   在session中如果二级缓存配置为 read-only 则session.update delete 操作失败 save get load 操作成功
+	
+	1.2 HQL：默认是用来操作多条记录的。 list()  executeUpdate() 二级缓存的配置包括 read-only 默认是无效的。注意，hql是没有save
+	方法的。如果需要插入数据，只能调用session.save
+	
+	

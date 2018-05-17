@@ -1,0 +1,85 @@
+package com.ygh.shop.util;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
+
+import javax.annotation.Resource;
+import javax.servlet.ServletContext;
+
+import org.springframework.stereotype.Component;
+
+import com.ygh.shop.model.Category;
+import com.ygh.shop.model.Product;
+import com.ygh.shop.service.categoryService;
+import com.ygh.shop.service.productService;
+@Component("productTimerTask")
+public class ProductTimerTask extends TimerTask{
+	
+	protected productService productservice = null;
+
+	protected categoryService categoryservice = null;
+
+	protected ServletContext application = null; 
+	
+	public void setApplication(ServletContext application) {
+		this.application = application;
+	}
+	
+	public productService getProductservice() {
+		return productservice;
+	}
+
+
+	@Resource
+	public void setProductservice(productService productservice) {
+		this.productservice = productservice;
+	}
+
+
+	public categoryService getCategoryservice() {
+		return categoryservice;
+	}
+
+	@Resource
+	public void setCategoryservice(categoryService categoryservice) {
+		this.categoryservice = categoryservice;
+	}
+
+
+
+	@Override
+	public void run() {
+		System.out.println("---Run----");
+		List<List<Product>> productlist = new ArrayList<List<Product>>();
+		
+		//把product信息放到applicationcontext中，方便首页加载
+		
+		for(Category c : categoryservice.queryByHot(true))
+		{
+			System.out.println(c);
+			//把检索出来的数据放到application中
+			productlist.add(productservice.queryByCid(c.getId()));		
+		}
+		application.setAttribute("productlist", productlist);
+	}
+
+		
+		
+	}
+	
+	/*public static void main(String[] args) {
+		 Timer timer = new Timer(true);
+		 
+		timer.schedule(new TimerTask() {
+			
+			@Override
+			public void run() {
+				System.out.println("---Run----");				
+			}
+		}, 0, 2000);
+		 
+	}*/
+
+ 
